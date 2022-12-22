@@ -23,6 +23,8 @@ const toastDetails = {
 
 const removeToast = (toast) => {
     toast.classList.add("hide");
+    if(toast.timeoutId) clearTimeout(toast.timeoutId)//clearing the timeout for the toast
+    setTimeout(() => toast.remove(), 500); //removing the toast after 500ms
 }
 
 const createToast = (id) => {
@@ -35,10 +37,10 @@ const createToast = (id) => {
                         <i class="fa-solid ${icon}"></i>
                         <span>${text}</span>
                         </div>
-                        <i class="fa-solid fa-xmark"></i>`;
+                        <i class="fa-solid fa-xmark" onclick="removeToast(this.parentElement)"></i>`;
     notifications.appendChild(toast); //append the toat to the notification ul
     //Setting a timeout to remove the toast after the specified duration
-    setTimeout(() => removeToast(toast), toastDetails.timer);
+    toast.timeoutId = setTimeout(() => removeToast(toast), toastDetails.timer);
 }
 
 
