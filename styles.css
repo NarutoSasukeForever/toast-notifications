@@ -45,7 +45,7 @@ body {
     margin-bottom: 10px;
     background: var(--light);
     justify-content: space-between;
-    /* animation: show_toast 0.3s ease forwards; */
+    animation: show_toast 0.3s ease forwards; 
 }
 
 @keyframes show_toast {
@@ -63,6 +63,25 @@ body {
     }
 }
 
+.notifications .toast.hide {
+    animation: hide_toast 0.3s ease forwards; 
+}
+
+@keyframes hide_toast {
+    0% {
+        transform: translateX(-10px);
+    }
+    40% {
+        transform: translateX(0%);
+    }
+    80% {
+        transform: translateX(-5%);
+    }
+    100% {
+        transform: translateX(calc(100% + 20px));
+    }
+}
+
 .toast::before {
     position: absolute;
     content: "";
@@ -71,7 +90,6 @@ body {
     bottom: 0px;
     left: 0px;
     animation: progress 5s linear forwards;
-    
 }
 
 @keyframes progress {

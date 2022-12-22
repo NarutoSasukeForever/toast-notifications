@@ -2,6 +2,7 @@ const notifications = document.querySelector(".notifications");
 buttons = document.querySelectorAll(".buttons .btn");
 
 const toastDetails = {
+    timer: 5000,
     success:  {
         icon: "fa-circle-check",
         text: "Success: This is a success toast.",
@@ -20,6 +21,10 @@ const toastDetails = {
     },
 }
 
+const removeToast = (toast) => {
+    toast.classList.add("hide");
+}
+
 const createToast = (id) => {
     //Getting the icon and text for the toast based on the id passed
     const { icon, text } = toastDetails[id];
@@ -32,6 +37,8 @@ const createToast = (id) => {
                         </div>
                         <i class="fa-solid fa-xmark"></i>`;
     notifications.appendChild(toast); //append the toat to the notification ul
+    //Setting a timeout to remove the toast after the specified duration
+    setTimeout(() => removeToast(toast), toastDetails.timer);
 }
 
 
